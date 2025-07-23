@@ -1,0 +1,41 @@
+version: 1
+service: spaces
+username: spaces
+
+scripts:
+  build_inside_vm: docker compose -f /home/$USERNAME/docker-compose.yml build --pull
+  start_once: docker compose -f /home/$USERNAME/docker-compose.yml up -d
+
+files:
+  - sources:
+      - src/*.cs
+      - src/spaces.csproj
+      - src/wwwroot
+    destination: /home/$USERNAME/src
+  - sources:
+      - docker-compose.yml
+      - Dockerfile
+      - start.sh
+    destination: /home/$USERNAME
+
+proxies:
+  - name: main
+    listener:
+      protocol: http
+      certificate: wildcard.ctf.hitb.org
+    upstream:
+      host_index: 11
+      port: 80
+    limits:
+      - source: team
+        location: /
+        limit: 20r/m
+        burst: 10
+      - source: team
+        location: /ws
+        proxy_websockets: true
+        limit: 2r/m
+        burst: 1
+        simultaneous_connections: 2
+    dns_records:
+      - spaces

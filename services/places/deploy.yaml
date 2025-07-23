@@ -1,0 +1,50 @@
+version: 1
+service: places
+username: places
+
+scripts:
+  build_inside_vm: docker compose -f /home/$USERNAME/docker-compose.yml build --pull
+  start_once: docker compose -f /home/$USERNAME/docker-compose.yml up -d
+
+files:
+  - source: wwwroot
+    destination: /home/$USERNAME/
+  - sources:
+      - crypt.go
+      - main.go
+      - keys.go
+      - place.go
+      - go.mod
+      - go.sum
+      - Dockerfile
+      - docker-compose.yml
+      - start.sh
+    destination: /home/$USERNAME/
+
+proxies:
+  - name: main
+    listener:
+      protocol: http
+      certificate: wildcard.ctf.hitb.org
+    upstream:
+      host_index: 5
+      port: 80
+    limits:
+      - source: team
+        location: /
+        limit: 200r/m
+        burst: 100
+      - source: team
+        location: /api/put
+        limit: 8r/m
+        burst: 8
+      - source: team
+        location: /api/list
+        limit: 5r/m
+        burst: 5
+      - source: team
+        location: /api/route
+        limit: 8r/m
+        burst: 8
+    dns_records:
+      - places

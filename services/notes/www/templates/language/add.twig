@@ -1,0 +1,25 @@
+{% extends "base.twig" %}
+{% block title %}{{ language.LANGUAGE_ADD }}{% endblock %}
+{% block content %}
+    <h1>{{ language.LANGUAGE_ADD }}</h1>
+    <form method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">{{ language.TITLE }}</label>
+            <input type="text" class="form-control" id="title" name="title">
+            {% if errors.title %}
+                <p>{{ errors.title }}</p>
+            {% endif %}
+        </div>
+        {% for key in keys %}
+        <div class="mb-3">
+            <label for="{{ key }}" class="form-label">{{ language.TRANSLATION_FOR }} "{{ language[key] }}"</label>
+            <input type="text" class="form-control" id="{{ key }}" name="{{ key }}" required minlength="5" maxlength="50">
+            {% if errors[key] %}
+                <p>{{ errors[key] }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">{{ language.LANGUAGE_ADD }}</button>
+    </form>
+
+{% endblock %}

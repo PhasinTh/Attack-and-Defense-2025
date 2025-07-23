@@ -1,0 +1,61 @@
+services:
+  auth:
+    image: docs/auth:latest
+    restart: unless-stopped
+    build: auth
+    depends_on:
+      - pg
+      - redis
+    environment:
+      - POSTGRES_PASSWORD
+      - REDIS_URI
+      - DOCS_SECRET
+
+  api:
+    image: docs/api:latest
+    restart: unless-stopped
+    build: api
+    depends_on:
+      - pg
+      - redis
+    environment:
+      - WEB_CONCURRENCY=2
+      - REDIS_URI
+      - DOCS_SECRET
+      - APP_ENV=production
+
+  pg:
+    image: postgres:15.3
+    restart: unless-stopped
+    volumes:
+      - "pg-data:/var/lib/postgresql/data"
+      - "./init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
+    environment:
+      - POSTGRES_PASSWORD
+
+  redis:
+    image: redis:7.0.12
+    restart: unless-stopped
+    volumes:
+      - "redis-data:/data"
+    command:
+      - redis-server
+      - --save 60 1
+      - --loglevel warning
+
+  nginx:
+    image: nginx:1.24
+    restart: unless-stopped
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./static:/data/static:ro"
+      - "./index.html:/data/index.html:ro"
+    # ports:
+    #   - "80:80"
+    depends_on:
+      - auth
+      - api
+
+volumes:
+  pg-data: {}
+  redis-data: {}
