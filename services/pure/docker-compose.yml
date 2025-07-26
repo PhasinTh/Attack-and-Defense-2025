@@ -5,8 +5,8 @@ services:
     build: nginx
     container_name: pure_nginx
     restart: unless-stopped
-    # ports:
-    #   - 443:443
+    ports:
+      - 443:443
     depends_on:
       - app
 

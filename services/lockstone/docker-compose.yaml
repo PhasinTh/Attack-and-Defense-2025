@@ -2,8 +2,8 @@ version: '2.0'
 services:
   lockstone:
     build: .
-    # expose:
-    #   - 3000
+    expose:
+      - 3000
     volumes:
       - ./keystone.db:/home/lockstone/keystone.db
     restart: unless-stopped
@@ -11,8 +11,8 @@ services:
   nginx:
     image: nginx:mainline
     restart: unless-stopped
-    # ports:
-    #   - "80:80"
-    #   - "443:443"
+    ports:
+      - "80:80"
+      - "443:443"
     volumes:
       - ./nginx/:/etc/nginx/:ro

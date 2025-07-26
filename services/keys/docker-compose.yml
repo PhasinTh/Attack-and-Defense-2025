@@ -4,16 +4,16 @@ services:
     keys:
       restart: unless-stopped
       build: ./keys
-      # expose:
-      #   - "9000:9000"
+      expose:
+        - "9000:9000"
       links:
         - redis
 
     nginx:
       restart: unless-stopped
       build: ./nginx
-      # ports:
-      #   - "3000:80"
+      ports:
+        - "3000:80"
       links:
         - keys
 
@@ -21,7 +21,7 @@ services:
       command: redis-server --save 60 1
       restart: unless-stopped
       image: redis:7.0.12-alpine
-      # expose:
-      #   - "6379"
+      expose:
+        - "6379"
       volumes:
         - "/data/redis:/data"
