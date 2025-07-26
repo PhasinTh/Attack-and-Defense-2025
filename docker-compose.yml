@@ -2,12 +2,12 @@ include:
   - ./checkersystem/docker-compose.yml
   - ./services/passmgr/docker-compose.yml
   # - ./services/places/docker-compose.yml
-  # - ./services/lockstone/docker-compose.yml
+  # - ./services/lockstone/docker-compose.yaml
   # - ./services/godeeper/docker-compose.yml
   # - ./services/pure/docker-compose.yml
   # - ./services/funding/docker-compose.yml
   # - ./services/keys/docker-compose.yml
   # - ./services/spaces/docker-compose.yml
-  # - ./services/docs/docker-compose.yml
+  # - ./services/docs/docker-compose.yaml
   # - ./services/tokenourcer/docker-compose.yml
   # - ./services/notes/docker-compose.yml
