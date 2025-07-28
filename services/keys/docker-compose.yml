@@ -24,4 +24,4 @@ services:
       expose:
         - "6379"
       volumes:
-        - "/data/redis:/data"
+        - "./data/redis:/data"

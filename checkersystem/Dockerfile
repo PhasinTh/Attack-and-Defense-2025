@@ -17,7 +17,8 @@ ENV CS_STATIC=/scoreboard
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends python3 python3-pip
-RUN pip install gornilo requests --break-system-packages
+RUN pip3 install gornilo requests jsonschema --break-system-packages
+
 
 # Copy checkers to /app/checkers catalog
 # COPY checkers /app/checker

@@ -22,7 +22,8 @@ PUBLIC_KEY_RE = re.compile(r'(-----BEGIN PUBLIC KEY-----.*?-----END PUBLIC KEY--
 def info():
     verdict(OK, "vulns: 1\npublic_flag_description: Flag ID is the user's login, flag is the comment")
 
-
+#TODO: remove this
+CHECKER_DIRECT_CONNECT = '1'
 def url_prefix(host):
     if CHECKER_DIRECT_CONNECT == "1":
         return f"http://{host}:{PORT}"

@@ -15,6 +15,9 @@ else:
     PORT = 443
     URL_SCHEMA = "https"
 
+#TODO: remove this
+PORT = 8080
+URL_SCHEMA = "http"
 
 API_REQUEST_URL_PATTERN = "%s://{hostname}:{port}/{method}" % URL_SCHEMA
 STATIC_REQUEST_URL_PATTERN = "%s://{hostname}:{port}/assets/{category}/{name}" % URL_SCHEMA
