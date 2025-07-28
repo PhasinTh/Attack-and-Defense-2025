@@ -5,7 +5,7 @@ x-cs: &cs-common
   init: true
   restart: unless-stopped
   volumes:
-    - "../cs.conf:/app/cs.conf"
+    - "./cs.conf:/app/cs.conf"
     - "../checkers:/app/checkers"
   environment:
     - POSTGRES_USER

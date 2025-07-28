@@ -1,5 +1,6 @@
 # Lab for Attack and Defense
-
+## รัน Checker System
+เปิดโฟลเดอร์ checkersystem
 ลบคอมเม้น services ที่ต้องการเล่นในไฟล์ `cs.conf`
 
 ```
@@ -8,12 +9,14 @@
     ]
 ```
 
-ลบคอมเม้น docker compose include ในไฟล์ `docker-compose.yml` สำหรับ service ที่ตรงกัน
-
+แก้ไขเวลา ในไฟล์ `cs.conf`
 ```
-include:
-  - ./checkersystem/docker-compose.yml
-  - ./services/passmgr/docker-compose.yml
+    postgres_uri => {'postgresql://postgres:Secr3t@pg:5432/cs'},
+    cs => {
+        base_url => 'http://localhost:8080',
+        time => [['2025-07-28 00:00:00', '2025-07-28 23:59:00']],
+        ...
+    }
 ```
 
 รัน
@@ -22,6 +25,14 @@ docker compose down -v
 docker compose up -d
 ```
 
+## รัน Vulnerable Service
+เปิดโฟลเดอร์ services/(lab ที่ต้องการ) เช่น services/notes
+
+รัน
+```sh
+docker compose down -v
+docker compose up -d
+```
 
 
 ***
