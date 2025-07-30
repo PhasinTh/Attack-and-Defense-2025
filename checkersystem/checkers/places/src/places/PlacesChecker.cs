@@ -264,7 +264,8 @@ internal class PlacesChecker : IChecker
 		return writer.WrittenMemory;
 	}
 
-	private const int Port = 443;
+	// private const int Port = 443;
+	private const int Port = 80;
 
 	private const int MaxMessageSize = 1024;
 	private const int MaxHttpBodySize = 16 * 1024;
