@@ -34,7 +34,7 @@ RUN wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod
 
 RUN pip3 install requests gornilo --break-system-packages
 
-COPY cs.conf /app/c_s.conf
+COPY cs.conf /app/cs.conf
 
 COPY checkers/passmgr      /app/checkers/passmgr
 COPY checkers/spaces       /app/checkers/spaces

@@ -23,8 +23,8 @@ def get_random_domain():
 class NoteChecker(checklib.http.HttpChecker):
     # port = 443
     # proto = 'https'
-    port = 80
-    proto = 'http'
+    port = 80 #TODO: remove this line when the checker is ready
+    proto = 'http' #TODO: remove this line when the checker is ready
 
     def info(self):
         print("vulns: 1")

@@ -13,7 +13,7 @@ import traceback
 OK, CORRUPT, MUMBLE, DOWN, CHECKER_ERROR = 101, 102, 103, 104, 110
 
 SKIP_PROXY = os.getenv("SKIP_PROXY") == "1"
-SKIP_PROXY = True # Local 
+SKIP_PROXY = True #TODO: remove this line when the checker is ready
 
 PORT = 80 if SKIP_PROXY else 443
 PROTOCOL = "http" if SKIP_PROXY else "https"

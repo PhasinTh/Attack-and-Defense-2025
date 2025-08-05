@@ -1,14 +1,14 @@
 version: '3.4'
 services:
-  nginx:
-    image: 'pure/nginx'
-    build: nginx
-    container_name: pure_nginx
-    restart: unless-stopped
-    ports:
-      - 443:443
-    depends_on:
-      - app
+  # nginx:
+  #   image: 'pure/nginx'
+  #   build: nginx
+  #   container_name: pure_nginx
+  #   restart: unless-stopped
+  #   ports:
+  #     - 443:443
+  #   depends_on:
+  #     - app
 
   mongo:
     image: mongo
@@ -23,6 +23,8 @@ services:
     build: web
     container_name: pure_app
     restart: unless-stopped
+    ports:
+      - 80:3000
     depends_on:
       - mongo
     environment:

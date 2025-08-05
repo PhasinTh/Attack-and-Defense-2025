@@ -19,7 +19,8 @@ def get_url(ip):
     if ip == "localhost":
         port = 8080
         return f"http://{ip}:{port}/"
-    return f"https://{ip}/"
+    return f"http://{ip}:{port}/" #TODO: remove this
+    # return f"https://{ip}/"
 
 def VerifySign(token):
     h = int(token[-8:],16)

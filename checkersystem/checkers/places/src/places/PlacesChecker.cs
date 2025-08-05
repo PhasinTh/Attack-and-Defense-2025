@@ -276,7 +276,8 @@ internal class PlacesChecker : IChecker
 
 	private const double FloatingPointTolerance = 0.000001;
 
-	private static Uri GetBaseUri(string host) => new($"https://{host}:{Port}/");
+	// private static Uri GetBaseUri(string host) => new($"https://{host}:{Port}/");
+	private static Uri GetBaseUri(string host) => new($"http://{host}:{Port}/");
 
 	private const string AuthCookieName = "auth";
 

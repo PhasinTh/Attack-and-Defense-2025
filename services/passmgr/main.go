@@ -221,6 +221,13 @@ func handleAdd(c *gin.Context) {
 		return
 	}
 
+	// if result.RowsAffected == 0 {
+	// 	c.HTML(http.StatusOK, template, gin.H{
+	// 		"Error": "Invalid credentials",
+	// 	})
+	// 	return
+	// }
+
 	result = db.Create(&Record{
 		User:    user,
 		Pass:    password,

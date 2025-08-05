@@ -42,7 +42,7 @@ def get_url_path(path, use_client_cert):
     return path
 
 def register_user(host, user, password, use_client_cert=False):
-    base_url = f"https://{host}/"
+    base_url = f"http://{host}/"
 
     session = requests.Session()
 
@@ -128,7 +128,7 @@ def register_user(host, user, password, use_client_cert=False):
 
 
 def login_user(host, user, password, use_client_cert=False):
-    base_url = f"https://{host}/"
+    base_url = f"http://{host}/"
 
     if use_client_cert:
         cert=(ADMIN_CERT, ADMIN_KEY)
@@ -244,7 +244,7 @@ def generate_random_contact(comment = None):
 
 
 def create_contact(host, session, comment, use_client_cert=False):
-    base_url = f"https://{host}/"
+    base_url = f"http://{host}/"
 
     if use_client_cert:
         cert=(ADMIN_CERT, ADMIN_KEY)
@@ -301,7 +301,7 @@ def create_contact(host, session, comment, use_client_cert=False):
 
 
 def get_contact_comment(host, session, id, use_client_cert=False):
-    base_url = f"https://{host}/"
+    base_url = f"http://{host}/"
 
     if use_client_cert:
         cert=(ADMIN_CERT, ADMIN_KEY)
@@ -343,7 +343,7 @@ def get_contact_comment(host, session, id, use_client_cert=False):
     return (OK, "", "", contact_comment[0].strip())
 
 def switch_dark_mode(host, dark_mode):
-    base_url = f"https://{host}/"
+    base_url = f"http://{host}/"
 
     session = requests.Session()
     if not dark_mode is None:

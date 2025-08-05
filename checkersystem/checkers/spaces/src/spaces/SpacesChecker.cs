@@ -271,7 +271,8 @@ internal class SpacesChecker : IChecker
 		return writer.WrittenMemory;
 	}
 
-	private const int Port = 443;
+	// private const int Port = 443;
+	private const int Port = 80; //TODO: remove this line when the checker is ready
 
 	private const int MaxMessageSize = 1024;
 
@@ -282,8 +283,10 @@ internal class SpacesChecker : IChecker
 	private const int MaxWsOneTimeDelay = 200;
 	private const int NetworkOpTimeout = 12000;
 
-	private static Uri GetBaseUri(string host) => new($"https://{host}:{Port}/");
-	private static Uri GetWsUri(string host) => new($"wss://{host}:{Port}/ws");
+	// private static Uri GetBaseUri(string host) => new($"https://{host}:{Port}/");
+	// private static Uri GetWsUri(string host) => new($"wss://{host}:{Port}/ws");
+	private static Uri GetBaseUri(string host) => new($"http://{host}:{Port}/"); //TODO: remove this line when the checker is ready
+	private static Uri GetWsUri(string host) => new($"ws://{host}:{Port}/ws"); //TODO: remove this line when the checker is ready
 
 	private const string AuthCookieName = "usr";
 	private static readonly Regex AuthCookieRegex = new(@"^[a-zA-Z0-9\.!$@:+\*=_-]+$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
