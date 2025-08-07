@@ -15,10 +15,10 @@ services:
     env_file: .env
   mysql:
     image: mysql
-    volumes:
-      - ./DATA/logs/mysql:/var/log/mysql
-      - ./DATA/mysql:/var/lib/mysql
-      - ./DATA/mysql-files:/var/lib/mysql-files
-      - ./DATA/mysql-data:/docker-entrypoint-initdb.d
+    # volumes:
+      # - ./DATA/logs/mysql:/var/log/mysql
+      # - ./DATA/mysql:/var/lib/mysql
+      # - ./DATA/mysql-files:/var/lib/mysql-files
+      # - ./DATA/mysql-data:/docker-entrypoint-initdb.d
     env_file: .env
     restart: unless-stopped

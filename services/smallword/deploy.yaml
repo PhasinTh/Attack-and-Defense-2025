@@ -1,0 +1,36 @@
+version: 1
+service: smallword
+username: smallword
+
+scripts:
+  build_inside_vm: docker compose -f /home/$USERNAME/docker-compose.yml build --pull
+  start_once: docker compose -f /home/$USERNAME/docker-compose.yml up -d
+
+files:
+  - sources:
+      - src/*.cs
+      - src/smallword.csproj
+      - src/ext
+      - src/wwwroot
+    destination: /home/$USERNAME/src
+  - sources:
+      - docker-compose.yml
+      - Dockerfile
+      - start.sh
+    destination: /home/$USERNAME
+
+proxies:
+  - name: main
+    listener:
+      protocol: http
+      certificate: wildcard.ctf.hitb.org
+    upstream:
+      host_index: 7
+      port: 80
+    limits:
+      - source: team
+        location: /
+        limit: 5r/s
+        burst: 10
+    dns_records:
+      - smallword

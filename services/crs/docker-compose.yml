@@ -1,0 +1,12 @@
+version: '3'
+services:
+  crs:
+    container_name: crs
+    restart: unless-stopped
+    build: .
+    ports:
+      - 4444:4444           # Service port. Public.
+      - 127.0.0.1:4441:4441 # Console. Private. Disabled by default, see boot.sh.
+      - 127.0.0.1:2222:2222 # SSH port. Private.
+    volumes:
+      - ./:/app

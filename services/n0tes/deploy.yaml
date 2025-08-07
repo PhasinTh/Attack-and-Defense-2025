@@ -1,0 +1,39 @@
+version: 1
+service: n0tes
+username: n0tes
+
+scripts:
+  build_inside_vm: docker compose -f /home/$USERNAME/docker-compose.yml build --pull
+  start_once: docker compose -f /home/$USERNAME/docker-compose.yml up -d
+
+files:
+  - sources:
+      - docker-compose.yml
+      - app
+      - nginx
+    destination: /home/$USERNAME
+
+proxies:
+  - name: main
+    listener:
+      protocol: http
+      certificate: wildcard.ctf.hitb.org
+      default: true
+    upstream:
+      host_index: 8
+      port: 443
+      protocol: https
+    dns_records:
+      - n0tes
+
+  - name: admin
+    listener:
+      protocol: http
+      hostname: admin.n0tes.ctf.hitb.org
+      certificate: admin.n0tes.ctf.hitb.org
+      client_certificate: n0tes_client
+    upstream:
+      host_index: 8
+      port: 443
+      protocol: https
+      client_certificate: n0tes_client

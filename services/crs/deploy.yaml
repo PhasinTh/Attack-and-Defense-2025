@@ -1,0 +1,36 @@
+version: 1
+service: crs
+username: crs
+scripts:
+  build_outside_vm: ./build.sh
+  build_inside_vm: docker compose -f /home/$USERNAME/docker-compose.yml build --pull
+  start_once: docker compose -f /home/$USERNAME/docker-compose.yml up -d
+files:
+  - sources:
+      - ./img/qemu.img
+      - ./img/boot.sh
+      - ./Dockerfile
+      - ./docker-compose.yml
+    destination: /home/$USERNAME/
+
+  - source: ./img/files/id_rsa          # for ssh into qemu VM
+    destination: /home/$USERNAME/.ssh/
+
+  - source: ./motd
+    destination: /etc
+
+proxies:
+  - name: main
+    listener:
+      protocol: tcp
+      port: 4444
+      tcp_simultaneous_connections: 5
+    upstream:
+      host_index: 10
+      port: 4444
+    limits:
+      - source: team
+        limit: 6/minute
+        burst: 6
+    dns_records:
+      - crs
