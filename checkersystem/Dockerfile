@@ -49,6 +49,18 @@ RUN wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod
 
 RUN pip3 install requests gornilo patool beautifulsoup4 --break-system-packages
 
+
+COPY checkers/hyperborea-legends /app/checkers/hyperborea-legends
+COPY checkers/memos /app/checkers/memos
+COPY checkers/perune /app/checkers/perune
+COPY checkers/rusi-trainer /app/checkers/rusi-trainer
+COPY checkers/rustest /app/checkers/rustest
+COPY checkers/werk /app/checkers/werk
+
+RUN for f in /app/checkers/*/requirements.txt; do \
+    pip install -r "$f" --break-system-packages; \
+done
+
 COPY cs.conf /app/cs.conf
 
 COPY checkers/passmgr      /app/checkers/passmgr

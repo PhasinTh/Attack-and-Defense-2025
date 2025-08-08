@@ -2,7 +2,9 @@ version: '2.0'
 services:
   obscurity:
     build: .
-    network_mode: "host"
+    # network_mode: "host"
+    ports:
+      - "80:80"
     volumes:
       - ./index.html:/home/obscurity/index.html
       - ./api.php:/home/obscurity/api.php

@@ -15,6 +15,7 @@ from checker_helper import *
 PORT = 3000
 TIMEOUT = 30
 CHECKER_DIRECT_CONNECT = os.environ.get("CHECKER_DIRECT_CONNECT")
+CHECKER_DIRECT_CONNECT = "1" # TODO: remove this line after prod
 KEYS_COUNT_RE = re.compile(r'Currently stored keys: (\d+)')
 
 
