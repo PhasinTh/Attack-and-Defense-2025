@@ -1,3 +1,4 @@
 exploit.py
 *.db
 *.rdb
+services/**/data/
